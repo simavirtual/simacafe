@@ -76,6 +76,8 @@ FUNCTION CaF_00300(aP1,aP2,aP3,oBrowse)
 *>>>>FIN DECLARACION PARAMETROS GENERALES
 
 *>>>>DECLARACION DE VARIABLES
+       LOCAL PathDoc := 'c:\misdoc'         // Path de Documentos del sima
+
        LOCAL cSavPan := ''                  // Salvar Pantalla
      *ÀVariables generales
 
@@ -259,10 +261,10 @@ FUNCTION CaF_00300(aP1,aP2,aP3,oBrowse)
 *>>>>ACTIVACION DE LA IMPRESORA
        IF nNroInf == 0
 	  FilePrn := 'Inf'
-	  nOpcPrn := nPrinter_On(cNomUsr,@FilePrn,CAF->cOpcPrnCaF,.T.,.T.)
+	  nOpcPrn := nPrinter_On(cNomUsr,@FilePrn,CAF->cOpcPrnCaF,.T.,.T.,,PathDoc)
        ELSE
 	  FilePrn := cCodInf
-	  nOpcPrn := nPrinter_On(cNomUsr,@FilePrn,CAF->cOpcPrnCaF,.T.,2,bInsIso)
+	  nOpcPrn := nPrinter_On(cNomUsr,@FilePrn,CAF->cOpcPrnCaF,.T.,2,bInsIso,PathDoc)
        ENDIF
        SET DEVICE TO SCREEN
        IF EMPTY(nOpcPrn)
@@ -484,9 +486,11 @@ FUNCTION CaF_003_00(aP1,aP2,aP3,aDetInf,oBrowse)
        LOCAL cMesSer := ''                  // Mes del Servicio de Cafeteria
        LOCAL cDiaSer := ''                  // Dia del Servicio de la Cafeteria
        LOCAL nNroSer := 0                   // N£mero de Servicios de la Cafeteria
+       LOCAL cConcep := ''                  // Conceptos
 
        LOCAL Getlist := {}                  // Variable del sistema
      *ÀVariables espec¡ficas
+
 
        LOCAL cCodigoTco := ''               // C¢digo del Concepto
        LOCAL cNombreTes := ''               // Nombre del Estudiante
@@ -662,6 +666,8 @@ FUNCTION CaF_003_00(aP1,aP2,aP3,aDetInf,oBrowse)
 		    CLI->(DBSKIP())
 		    LOOP
 		 ENDIF
+		 cConcep := &cMaeAct->cConcepEst
+		 cConcep := SUBS(cConcep+SPACE(60),1,60)
 *--------------FIN VALIDACION DEL INGRESO A LA CAFETERIA
 
 *--------------IMPRESION DEL REGISTRO
@@ -669,7 +675,7 @@ FUNCTION CaF_003_00(aP1,aP2,aP3,aDetInf,oBrowse)
 		 AADD(aRegPrn,&cMaeAct->cCodigoEst)
 		 AADD(aRegPrn,&cMaeAct->cCodigoGru)
 		 AADD(aRegPrn,cNombreTes)
-		 AADD(aRegPrn,'')
+		 AADD(aRegPrn,cConcep)
 
 		 lPrnOpc(lShared,nOpcPrn,FilePrn,nHanXml,01,nColCab,;
 			 aTitPrn,aRegPrn,aNroCol,bPagina,bDerAut,bCabeza)

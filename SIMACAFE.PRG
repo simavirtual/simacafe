@@ -27,7 +27,7 @@ OBJETIVOS:
        LOCAL cSavPan := ''                  // Salvar Pantalla
        LOCAL lHayErr    := .F.              // .T. Hay Error
 
-       LOCAL cVerSis := ' XML212.03-2'      // Versi¢n Actual
+       LOCAL cVerSis := ' XML214.04-1'      // Versi¢n Actual
        LOCAL aP1 := {}                      // Parametros Generales
 
        LOCAL cLogEmp := ''                  // Logo de la Empresa

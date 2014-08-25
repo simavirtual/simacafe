@@ -22,7 +22,7 @@ OBJETIVOS:
 *>>>>ARCHIVOS DEL SISTEMA
 *     LOCAL cVerSis := ' SX204.01'               // Versi¢n Actual
 *      LOCAL cVerSis := ' BETA.02'                // Versi¢n Actual
-      LOCAL cVerSis := ' XML212.03-2'               // Versi¢n Actual
+      LOCAL cVerSis := ' XML214.04-1'               // Versi¢n Actual
 *>>>>FIN ARCHIVOS DEL SISTEMA
 
 /*

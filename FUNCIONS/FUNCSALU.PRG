@@ -890,7 +890,7 @@ FUNCTION OtrAlu011(aP1,aP2,aP3,oBrowse)
 	  SET DEVICE TO PRINT
        ELSE
 	  FilePrn := IF(lSiorNo,'EstSiCaF','EstNoCaF')
-	  nOpcPrn := nPrinter_On(cNomUsr,@FilePrn,CAF->cOpcPrnCaF,.F.,.T.)
+	  nOpcPrn := nPrinter_On(cNomUsr,@FilePrn,CAF->cOpcPrnCaF,.F.,.T.,,PathDoc)
           IF EMPTY(nOpcPrn)
              RETURN NIL
           ENDIF
